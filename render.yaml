@@ -1,0 +1,6 @@
+services:
+  - type: web
+    name: stock-analysis-app
+    runtime: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: streamlit run previsao10.py
