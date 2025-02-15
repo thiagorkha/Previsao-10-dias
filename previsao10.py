@@ -93,6 +93,15 @@ def build_gru_model(hp, input_shape, forecast_horizon):
     model.compile(optimizer=Adam(learning_rate=hp.Choice('learning_rate', [1e-4, 1e-3])), loss=Huber(), metrics=['mae'])
     return model
 
+def create_and_compile_model(hp, input_shape, forecast_horizon, model_type='lstm'):  # Função para criar e compilar o modelo
+    if model_type == 'lstm':
+        model = build_lstm_model(hp, input_shape, forecast_horizon)
+    elif model_type == 'gru':
+        model = build_gru_model(hp, input_shape, forecast_horizon)
+    else:
+        raise ValueError("Invalid model type. Choose 'lstm' or 'gru'.")
+    return model
+
 def mean_absolute_percentage_error(y_true, y_pred):
     """Calcula o MAPE (Mean Absolute Percentage Error)."""
     y_true, y_pred = np.array(y_true), np.array(y_pred)
