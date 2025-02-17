@@ -319,15 +319,15 @@ def analyze_stock_with_lstm_and_strategy(stock_ticker, forecast_horizon=10, test
 
 st.write(f"Preço atual do ativo: R$ {current_price:.2f}")
 st.write("Previsões para os próximos dias:")
-    for i, price in enumerate(forecast, start=1):
-        pct_change = ((price / current_price) - 1) * 100
-        if pct_change > 2:
-            signal = "[COMPRA]"
-        elif pct_change < -2:
-            signal = "[VENDA]"
-        else:
-            signal = "[NEUTRO]"
-        st.write(f"{signal} Dia {i}: R$ {price:.2f} ({pct_change:+.2f}%)")  # Use st.write
+for i, price in enumerate(forecast, start=1):
+    pct_change = ((price / current_price) - 1) * 100
+    if pct_change > 2:
+        signal = "[COMPRA]"
+    elif pct_change < -2:
+        signal = "[VENDA]"
+    else:
+        signal = "[NEUTRO]"
+    st.write(f"{signal} Dia {i}: R$ {price:.2f} ({pct_change:+.2f}%)")  # Use st.write
 
     # Plotting with Streamlit
     fig, ax = plt.subplots(figsize=(12, 6))  # Create figure and axes
