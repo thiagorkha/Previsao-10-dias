@@ -318,7 +318,7 @@ def analyze_stock_with_lstm_and_strategy(stock_ticker, forecast_horizon=10, test
     r2 = r2_score(y_original, ensemble_predictions)
 
 st.write(f"Preço atual do ativo: R$ {current_price:.2f}")
-    st.write("Previsões para os próximos dias:")
+st.write("Previsões para os próximos dias:")
     for i, price in enumerate(forecast, start=1):
         pct_change = ((price / current_price) - 1) * 100
         if pct_change > 2:
