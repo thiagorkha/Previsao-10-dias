@@ -317,17 +317,17 @@ def analyze_stock_with_lstm_and_strategy(stock_ticker, forecast_horizon=10, test
     mape = mean_absolute_percentage_error(y_original, ensemble_predictions)
     r2 = r2_score(y_original, ensemble_predictions)
 
-st.write(f"Preço atual do ativo: R$ {current_price:.2f}")
-st.write("Previsões para os próximos dias:")
-for i, price in enumerate(forecast, start=1):
-    pct_change = ((price / current_price) - 1) * 100
-    if pct_change > 2:
-        signal = "[COMPRA]"
-    elif pct_change < -2:
-        signal = "[VENDA]"
-    else:
-        signal = "[NEUTRO]"
-    st.write(f"{signal} Dia {i}: R$ {price:.2f} ({pct_change:+.2f}%)")  # Use st.write
+    st.write(f"Preço atual do ativo: R$ {current_price:.2f}")
+    st.write("Previsões para os próximos dias:")
+    for i, price in enumerate(forecast, start=1):
+        pct_change = ((price / current_price) - 1) * 100
+        if pct_change > 2:
+            signal = "[COMPRA]"
+        elif pct_change < -2:
+            signal = "[VENDA]"
+        else:
+            signal = "[NEUTRO]"
+        st.write(f"{signal} Dia {i}: R$ {price:.2f} ({pct_change:+.2f}%)")  # Use st.write
 
     # Plotting with Streamlit
     fig, ax = plt.subplots(figsize=(12, 6))  # Create figure and axes
@@ -372,18 +372,18 @@ for i, price in enumerate(forecast, start=1):
     rmse_backtest = np.sqrt(mean_squared_error(all_real_values, all_predictions))
     mae_backtest = mean_absolute_error(all_real_values, all_predictions)
 
-st.write(f"=== Resultados Ensemble para {stock_ticker} ({interval}) ===")
-st.write(f"MAPE: {mape:.4f}")
-st.write(f"R²: {r2:.4f}")
-
-st.write(f"=== Resultados para {stock_ticker} ({interval}) ===")
-st.write(f"RMSE: {rmse:.2f} ({rmse/current_price*100:.2f}%)")
-st.write(f"MAE: {mae:.2f} ({mae/current_price*100:.2f}%)")
-
-st.write(f"=== Resultados Backtesting para {stock_ticker} ({interval}) ===")
-st.write(f"RMSE: {rmse_backtest:.2f} ({rmse_backtest/current_price*100:.2f}%)")
-st.write(f"MAE: {mae_backtest:.2f} ({mae_backtest/current_price*100:.2f}%)")
-
+    st.write(f"=== Resultados Ensemble para {stock_ticker} ({interval}) ===")
+    st.write(f"MAPE: {mape:.4f}")
+    st.write(f"R²: {r2:.4f}")
+    
+    st.write(f"=== Resultados para {stock_ticker} ({interval}) ===")
+    st.write(f"RMSE: {rmse:.2f} ({rmse/current_price*100:.2f}%)")
+    st.write(f"MAE: {mae:.2f} ({mae/current_price*100:.2f}%)")
+    
+    st.write(f"=== Resultados Backtesting para {stock_ticker} ({interval}) ===")
+    st.write(f"RMSE: {rmse_backtest:.2f} ({rmse_backtest/current_price*100:.2f}%)")
+    st.write(f"MAE: {mae_backtest:.2f} ({mae_backtest/current_price*100:.2f}%)")
+    
 
 # Streamlit app
 st.title("Stock Price Prediction with LSTM/GRU and Ensemble")
