@@ -373,16 +373,16 @@ for i, price in enumerate(forecast, start=1):
     mae_backtest = mean_absolute_error(all_real_values, all_predictions)
 
 st.write(f"=== Resultados Ensemble para {stock_ticker} ({interval}) ===")
-    st.write(f"MAPE: {mape:.4f}")
-    st.write(f"R²: {r2:.4f}")
+st.write(f"MAPE: {mape:.4f}")
+st.write(f"R²: {r2:.4f}")
 
-    st.write(f"=== Resultados para {stock_ticker} ({interval}) ===")
-    st.write(f"RMSE: {rmse:.2f} ({rmse/current_price*100:.2f}%)")
-    st.write(f"MAE: {mae:.2f} ({mae/current_price*100:.2f}%)")
+st.write(f"=== Resultados para {stock_ticker} ({interval}) ===")
+st.write(f"RMSE: {rmse:.2f} ({rmse/current_price*100:.2f}%)")
+st.write(f"MAE: {mae:.2f} ({mae/current_price*100:.2f}%)")
 
-    st.write(f"=== Resultados Backtesting para {stock_ticker} ({interval}) ===")
-    st.write(f"RMSE: {rmse_backtest:.2f} ({rmse_backtest/current_price*100:.2f}%)")
-    st.write(f"MAE: {mae_backtest:.2f} ({mae_backtest/current_price*100:.2f}%)")
+st.write(f"=== Resultados Backtesting para {stock_ticker} ({interval}) ===")
+st.write(f"RMSE: {rmse_backtest:.2f} ({rmse_backtest/current_price*100:.2f}%)")
+st.write(f"MAE: {mae_backtest:.2f} ({mae_backtest/current_price*100:.2f}%)")
 
 
 # Streamlit app
